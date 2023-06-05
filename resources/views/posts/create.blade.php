@@ -10,95 +10,23 @@
 
         <h1 class="text-xl font-bold text-center">Create your post here!</h1>
 
-        <form method="POST" action="/admin/posts" enctype="multipart/form-data" class="space-y-5">
+        <form method="POST" action="/admin/posts" enctype="multipart/form-data">
             @csrf
             
-            <div>
-                <label class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="title"
-                >Title</label>
-                <input class="border border-gray-400 p-2 w-full"
-                    name="title" 
-                    value="{{ old('title') }}"                    
-                    required
-                />
+            <x-form.input name="title"/>
 
-                @error('title')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+            <x-form.input name="slug"/>
 
-            </div>
+            <x-form.input name="thumbnail" type="file"/>
+
+            <x-form.textarea name="excerpt" />
+
+            <x-form.textarea name="body" row="4"  />            
             
-            <div>
-                <label class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="slug"
-                >slug</label>
-                <input class="border border-gray-400 p-2 w-full"
-                    name="slug" 
-                    value="{{ old('slug') }}"                    
-                    required
-                />
+            <x-form.field>
+                
+                <x-form.label name="category"/>
 
-                @error('slug')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-
-            </div>
-
-            <div>
-                <label class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="thumbnail"
-                >thumbnail</label>
-                <input class="border border-gray-400 p-2 w-full"
-                    name="thumbnail"
-                    id="thumbnail"
-                    type="file"
-                    required 
-                />
-
-                @error('thumbnail')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-
-            </div>
-
-            <div>
-                <label class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="excerpt"
-                >excerpt</label>
-                <textarea class="border border-gray-400 p-2 w-full"
-                    name="excerpt" 
-                    rows="2"
-                    required
-                >{{ old('excerpt') }}</textarea>
-
-                @error('excerpt')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-
-            </div>
-            <div>
-                <label class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="body"
-                >Body</label>
-                <textarea class="border border-gray-400 p-2 w-full"
-                    name="body" 
-                    rows="4"
-                    required
-                >{{ old('body') }}</textarea>
-
-                @error('body')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-
-            </div>
-
-            <div>
-                <label class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                    for="category_id"
-                >
-                    Category
-                </label>
                 <select class="border border-gray-400 p-2 w-full"
                     name="category_id"
                     id="category" 
@@ -111,15 +39,11 @@
                     
                 </select>
 
-                @error('category')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+                <x-form.error name="category" />
 
-            </div>
+            </x-form.field>
             
-            <div>
-                <button type="submit" class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 mt-4">Post</button>
-            </div>
+            <x-form.button> post </x-form.button>
 
                                 
         </form>
