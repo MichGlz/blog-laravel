@@ -1,7 +1,7 @@
 
 
 
-<x-dropdown :currentCategory="$currentCategory">
+<x-dropdown :name="isset($currentCategory->name)? $currentCategory->name : 'Category'">
                 
     <x-dropdown-item 
     href="/?{{ http_build_query(request()->except('category', 'page')) }}"

@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 
 <title>Blog</title>
@@ -22,14 +24,35 @@
             <div class="mt-8 md:mt-0 flex items-center">
            
             @auth
+                <x-dropdown name="Welcome, {{ auth()->user()->name }}!" style="text-xs font-bold uppercase flex items-center">    
+                    <x-dropdown-item 
+                        href="/admin/posts"
+                        :active="request()->is('admin/posts')" 
+                        >
+                        All Posts
+                    </x-dropdown-item >
+                    <x-dropdown-item 
+                    href="/admin/posts/create"
+                    :active="request()->is('admin/posts/create')" 
+                    >
+                    Create a post
+                </x-dropdown-item >
+                    <x-dropdown-item 
+                        href="/"
+                        :active="request()->is('/')" 
+                        >
+                        home
+                    </x-dropdown-item >
 
-                <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</span>
-                <form method="POST" action="/logout">
-                    @csrf
-
-                    <button class="text-xs text-blue-500 ml-6" type="submit">Log out</button>
-
-                </form>
+                    <form method="POST" action="/logout">
+                        @csrf
+    
+                        <button class="block w-full px-2 text-left hover:bg-gray-300 focus:bg-gray-300" type="submit">Log out</button>
+    
+                    </form>
+                    
+                </x-dropdown>    
+                
 
             @else
                 
