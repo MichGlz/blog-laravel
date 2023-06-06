@@ -25,18 +25,18 @@
            
             @auth
                 <x-dropdown name="Welcome, {{ auth()->user()->name }}!" style="text-xs font-bold uppercase flex items-center">    
+                @admin 
                     <x-dropdown-item 
-                        href="/admin/posts"
-                        :active="request()->is('admin/posts')" 
-                        >
-                        All Posts
-                    </x-dropdown-item >
+                    href="/admin/posts"
+                    :active="request()->is('admin/posts')" 
+                    >Dashboard</x-dropdown-item >
+
                     <x-dropdown-item 
                     href="/admin/posts/create"
                     :active="request()->is('admin/posts/create')" 
-                    >
-                    Create a post
-                </x-dropdown-item >
+                    >New Post</x-dropdown-item >
+                @endadmin
+                   
                     <x-dropdown-item 
                         href="/"
                         :active="request()->is('/')" 

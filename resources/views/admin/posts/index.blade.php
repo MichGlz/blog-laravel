@@ -6,9 +6,21 @@
            <tbody>
                 @foreach ($posts as $post)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap border-b"><a href="/posts/{{ $post->slug }}">{{ $post->title }}</a></td>
-                        <td class="px-6 py-4 whitespace-nowrap border-b"><span class="bg-green-300 text-gray-600 text-sm py-1 px-3 rounded-full">Posted</span></td>
-                        <td class="px-6 py-4 whitespace-nowrap border-b text-sm"><a href="/admin/posts/{{ $post->id }}/edit" class="text-blue-500 py-1 px-2">Edit</a></td>
+                        <td class="px-6 py-4 whitespace-nowrap border-b">
+                            <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap border-b text-sm">
+                            <a href="/admin/posts/{{ $post->id }}/edit" class="text-blue-500">Edit</a>
+                        </td>
+                        
+                        <td class="px-6 py-4 whitespace-nowrap border-b text-sm">
+                            <form method="POST" action="/admin/posts/{{ $post->id }}" >
+                                @csrf
+                                @method('DELETE')
+                                <button class="text-gray-300 text-sm hover:text-red-300">Delete</button>
+                            </form>
+                        </td>    
                     </tr>
                 @endforeach    
             </tbody>
